@@ -4,8 +4,13 @@
  */
 package com.mycompany.proyecto_jsp.controlador;
 
+import com.mycompany.proyecto_jsp.DAO.ProyectosDAOImpl;
+import com.mycompany.proyecto_jsp.entidades.EnumEstadoProyecto;
+import com.mycompany.proyecto_jsp.entidades.Proyecto;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,69 +24,65 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "MostrarFormularioNuevosProyectos", urlPatterns = {"/MostrarFormularioNuevosProyectos"})
 public class MostrarFormularioNuevosProyectos extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MostrarFormularioNuevosProyectos</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MostrarFormularioNuevosProyectos at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    private ProyectosDAOImpl proyectosDAOImpl;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        // Inicializar la clase de acceso a datos (ProyectosDAOImpl)
+        proyectosDAOImpl = new ProyectosDAOImpl();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+        // Recoger los datos del formulario
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        String descripcion = request.getParameter("descripcion");
+        String fechaInicioStr = request.getParameter("fechaInicio");
+        String fechaFinStr = request.getParameter("fechaFin");
+        String estadoStr = request.getParameter("estado");
+
+        // Convertir las fechas de String a Date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaInicioUtil = null;
+        Date fechaFinUtil = null;
+
+        try {
+            fechaInicioUtil = sdf.parse(fechaInicioStr);  // Devuelve java.util.Date
+            fechaFinUtil = sdf.parse(fechaFinStr);        // Devuelve java.util.Date
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Maneja el error en el formato de fecha si es necesario
+        }
+
+        // Convertir java.util.Date a java.sql.Date
+        java.sql.Date fechaInicioSQL = new java.sql.Date(fechaInicioUtil.getTime());
+        java.sql.Date fechaFinSQL = new java.sql.Date(fechaFinUtil.getTime());
+
+        // Convertir el estado a Enum
+        EnumEstadoProyecto estado = EnumEstadoProyecto.valueOf(estadoStr);
+
+        // Crear un nuevo objeto Proyecto con los datos recibidos
+        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaInicioSQL, fechaFinSQL, estado.name(), null);
+
+        // Llamar a ProyectosDAOImpl para guardar el proyecto
+        try {
+            proyectosDAOImpl.addProject(proyecto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // En caso de error, puedes manejarlo como una excepción y mostrar un mensaje adecuado
+        }
+
+        // Redirigir al usuario a la página de lista de proyectos o página de confirmación
+        response.sendRedirect("MostrarListaProyectos.jsp");  // Cambia a la URL donde quieres redirigir
+    }
 
 }

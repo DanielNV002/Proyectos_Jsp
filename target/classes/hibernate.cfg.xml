@@ -27,8 +27,9 @@
         <property name="hibernate.hbm2ddl.auto">update</property> <!-- Actualiza el esquema según las entidades -->
 
         <!-- Mappings -->
-        <mapping class="org.example.entities.animal"/>
-        <mapping class="org.example.entities.familiAcogida"/>
+        <mapping class="com.mycompany.proyecto_jsp.entidades.Proyecto"/>
+        <mapping class="com.mycompany.proyecto_jsp.entidades.Tarea"/>
+
 
     </session-factory>
 

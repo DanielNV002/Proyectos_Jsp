@@ -12,6 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Eliminar una Tarea</h1>
+        <ul>
+            <li><a href="adminMenu.jsp">Volver</a></li>
+        </ul>
     </body>
 </html>

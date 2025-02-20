@@ -2,12 +2,16 @@ C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycomp
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\controlador\MostrarFormularioNuevasTareasDeProyecto.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\controlador\MostrarListaTareasDeProyecto.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\JakartaRestConfiguration.java
+C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\controlador\HibernateListener.java
+C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\Util\HibernateUtil.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\controlador\EliminarProyecto.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\controlador\MostrarFormularioNuevosProyectos.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\resources\JakartaEE8Resource.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\controlador\EliminarTarea.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\entidades\EnumEstadoTarea.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\controlador\LoginServlet.java
+C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\DAO\TareasDAO.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\entidades\Proyecto.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\entidades\EnumEstadoProyecto.java
 C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\entidades\Tarea.java
+C:\Users\alumno\Documents\NetBeansProjects\Proyecto_JSP\src\main\java\com\mycompany\proyecto_jsp\DAO\ProyectosDAO.java

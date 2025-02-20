@@ -4,14 +4,26 @@
  */
 package com.mycompany.proyecto_jsp.controlador;
 
+import com.mycompany.proyecto_jsp.Util.HibernateUtil;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 public class LoginServlet extends HttpServlet {
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        // Configurar Hibernate
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
@@ -26,5 +38,10 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("userMenu.jsp");
         }
     }
-}
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.getWriter().write("Las tablas fueron generadas si no existían.");
+    }
+}
