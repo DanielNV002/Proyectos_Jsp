@@ -1,0 +1,111 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;  /* Alineamos los elementos en columna */
+    justify-content: flex-start;  /* Alineamos al principio */
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding-top: 20px;  /* Espacio superior para no estar pegado al borde */
+}
+
+/* Styling for the title (h1) */
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;  /* Espacio entre el título y los botones */
+}
+
+/* Styling for the form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Espacio entre los elementos del formulario */
+}
+
+/* Styling the input field */
+input[type="number"] {
+    padding: 10px;
+    font-size: 1em;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Styling for the buttons */
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease; /* Solo el cambio de color */
+}
+
+/* "Eliminar" button */
+button[type="submit"] {
+    background-color: #f44336;  /* Rojo */
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #d32f2f;  /* Rojo más oscuro */
+}
+
+/* "Volver" button */
+/* Special styling for the "Volver" button */
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00bcd4;  /* Celeste para el botón "Volver" */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #007bb5;  /* Azul más oscuro cuando se pasa el ratón */
+}
+
+/* Styling for the message */
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e1f5fe;
+    color: #0277bd;
+    border: 1px solid #0277bd;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Responsive design for mobile devices */
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    input[type="number"] {
+        width: 80%;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    .message {
+        width: 90%;
+    }
+}

@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyecto_jsp.controlador;
 
+import com.mycompany.proyecto_jsp.DAO.TareasDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,69 +20,46 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "EliminarTarea", urlPatterns = {"/EliminarTarea"})
 public class EliminarTarea extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EliminarTarea</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EliminarTarea at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // Recuperar los parámetros del formulario
+        String tareaIdStr = request.getParameter("tareaId");
+        String proyectoIdStr = request.getParameter("idProject");
+        String mensaje = null;
+
+        try {
+            // Convertir los parámetros a enteros
+            int tareaId = Integer.parseInt(tareaIdStr);
+            int proyectoId = Integer.parseInt(proyectoIdStr);
+
+            // Llamar al método del servicio para eliminar la tarea
+            TareasDAOImpl tDAOI = new TareasDAOImpl();
+            tDAOI.deleteTaskFromProject(tareaId, proyectoId);
+
+            // Si la tarea se eliminó correctamente
+            mensaje = "Tarea eliminada exitosamente.";
+
+        } catch (NumberFormatException e) {
+            mensaje = "Error: Los ID proporcionados no son válidos.";
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            mensaje = "Error: " + e.getMessage();
+            e.printStackTrace();
+        } catch (Exception e) {
+            mensaje = "Error al eliminar la tarea.";
+            e.printStackTrace();
+        }
+
+        // Pasar el mensaje al JSP para que sea mostrado
+        request.setAttribute("mensaje", mensaje);
+
+        // Redirigir al mismo JSP para mostrar el mensaje
+        request.getRequestDispatcher("EliminarTarea.jsp").forward(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

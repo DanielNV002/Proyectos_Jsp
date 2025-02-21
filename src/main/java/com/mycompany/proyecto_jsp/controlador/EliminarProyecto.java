@@ -37,13 +37,13 @@ public class EliminarProyecto extends HttpServlet {
             if(proyectosDAO.deleteProject(projectId)){
                 mensaje = "Proyecto eliminado exitosamente.";
             }else{
-                mensaje = "No se encontró un proyecto con el ID proporcionado";
+                mensaje = "No se encontro un proyecto con el ID proporcionado";
             }
 
         } catch (NumberFormatException e) {
             mensaje = "ID de proyecto inválido.";
         } catch (Exception e) {
-            mensaje = "No se encontró un proyecto con el ID proporcionado o hubo un error.";
+            mensaje = "No se encontro un proyecto con el ID proporcionado o hubo un error.";
         }
         
         // Redirigir de nuevo al JSP con el mensaje

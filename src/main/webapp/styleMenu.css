@@ -1,0 +1,71 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;  /* Alineamos los elementos en columna */
+    justify-content: flex-start;  /* Alineamos al principio */
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding-top: 20px;  /* Espacio superior para no estar pegado al borde */
+}
+
+/* Styling for the title (h1) */
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;  /* Espacio entre el título y los botones */
+}
+
+/* Styling the list */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;  /* Eliminar márgenes adicionales */
+}
+
+/* Styling the links to look like buttons */
+ul li {
+    margin: 10px 0;  /* Espacio entre los botones */
+}
+
+ul li a {
+    display: inline-block;
+    padding: 15px 30px;
+    text-decoration: none;
+    background-color: #00bcd4;  /* Celeste color */
+    color: white;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;  /* Solo el cambio de color */
+}
+
+/* Hover effect */
+ul li a:hover {
+    background-color: #007bb5;  /* Azul cuando el ratón pasa sobre el botón */
+}
+
+/* Special styling for the "Cerrar sesión" link */
+ul li a[href="index.jsp"] {
+    background-color: #f44336;  /* Rojo para el botón "Cerrar sesión" */
+}
+
+ul li a[href="index.jsp"]:hover {
+    background-color: #d32f2f;  /* Rojo más oscuro cuando se pasa el ratón */
+}
+
+/* Responsive design for mobile devices */
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    ul li a {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+}

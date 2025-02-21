@@ -10,9 +10,26 @@
 
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styleListas.css">
+
         <title>Lista de Proyectos</title>
     </head>
     <body>
+        <%
+            // Capturar el parámetro "origen" desde la URL si está presente
+            String origen = request.getParameter("origen");
+            if (origen != null) {
+                session.setAttribute("pagina_origen", origen); // Guardar en sesión
+            }
+
+            // Recuperar la página de origen desde la sesión
+            String pagina_origen = (String) session.getAttribute("pagina_origen");
+
+            // Si no hay origen, definir un valor por defecto
+            if (pagina_origen == null) {
+                pagina_origen = "userMenu.jsp"; // O "adminMenu.jsp" si es más probable
+            }
+        %>
         <h1>Lista de Proyectos</h1>
         <form action="MostrarListaProyectos" method="GET">
             <label for="estado">Estado del Proyecto:</label>
@@ -60,6 +77,7 @@
                 %>
             </tbody>
         </table>
+        <button onclick="window.location.href = '<%= pagina_origen%>'">Volver</button>
     </body>
 </html>
 

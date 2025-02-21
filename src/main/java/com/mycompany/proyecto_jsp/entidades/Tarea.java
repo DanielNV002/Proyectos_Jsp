@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -39,6 +41,7 @@ public class Tarea implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @Lob
@@ -60,6 +63,14 @@ public class Tarea implements Serializable {
     private Proyecto idProyecto;
 
     public Tarea() {
+    }
+
+    public Tarea(String descripcionTarea, String responsable, Date fechaInicio, Date fechaFin, String estado) {
+        this.descripcionTarea = descripcionTarea;
+        this.responsable = responsable;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.estado = estado;
     }
 
     public Tarea(Integer id) {
@@ -151,5 +162,5 @@ public class Tarea implements Serializable {
     public String toString() {
         return "com.mycompany.proyecto_jsp.entidades.Tarea[ id=" + id + " ]";
     }
-    
+
 }

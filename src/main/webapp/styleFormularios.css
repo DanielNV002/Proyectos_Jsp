@@ -1,0 +1,132 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* Styling for the title (h1) */
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;  /* Espacio entre el título y el formulario */
+}
+
+/* Styling for the form */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;  /* Limitar el tamaño del formulario */
+    margin-bottom: 30px;  /* Separar el formulario del botón */
+}
+
+/* Form field styles */
+label {
+    font-size: 1.1em;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input[type="text"], input[type="date"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;  /* Asegurarnos de que el padding no afecte el ancho */
+}
+
+input[type="text"], input[type="date"], select {
+    margin-right: 10px;  /* Margen en la derecha */
+}
+
+textarea {
+    resize: none;  /* Deshabilitar la escalabilidad */
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    display: inline-block;
+    padding: 15px 30px;
+    text-decoration: none;
+    background-color: #00bcd4;  /* Celeste color */
+    color: white;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+    cursor: pointer;  /* Cambiar a pointer para indicar que es un botón */
+}
+
+input[type="submit"]:hover {
+    background-color: #007bb5;  /* Azul cuando el ratón pasa sobre el botón */
+}
+
+/* Special styling for the "Volver" button */
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00bcd4;  /* Celeste para el botón "Volver" */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #007bb5;  /* Azul más oscuro cuando se pasa el ratón */
+}
+
+/* Message box for confirmation or error */
+#message {
+    margin-top: 20px;
+    padding: 15px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    display: none;  /* Initially hidden */
+    text-align: left;
+}
+
+#message.success {
+    background-color: #4CAF50;  /* Green for success */
+    color: white;
+}
+
+#message.error {
+    background-color: #f44336;  /* Red for error */
+    color: white;
+}
+
+/* Responsive design for mobile devices */
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    input[type="submit"], button {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+}

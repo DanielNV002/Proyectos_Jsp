@@ -16,6 +16,9 @@ public interface TareasDAO {
     //Lista de Tareas según el proyecto
     List<Tarea> getTaskByProjectId(int idProject);
     
+    //Comprueba si existe el proyecto
+    boolean projectExists(int idProject);
+    
     //Añadir nueva tarea a un proyecto
     void addTaskToProject(Tarea tarea, int idProject);
     

@@ -20,8 +20,8 @@ public class TareasDAOImpl implements TareasDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             // Crear la consulta HQL para obtener las tareas por el id del proyecto
-            Query<Tarea> query = session.createQuery("FROM Tarea t WHERE t.proyecto.id = :idProject", Tarea.class);
-            query.setParameter("idProject", idProject); // Establecer el parámetro de la consulta
+            Query<Tarea> query = session.createQuery("FROM Tarea t WHERE t.idProyecto.id = :idProyecto", Tarea.class);
+            query.setParameter("idProyecto", idProject); // Establecer el parámetro de la consulta
             return query.list(); // Ejecutar la consulta y devolver la lista de tareas
         } finally {
             session.close(); // Asegurarse de cerrar la sesión
@@ -29,8 +29,25 @@ public class TareasDAOImpl implements TareasDAO {
     }
 
     @Override
+    public boolean projectExists(int idProject) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            // Buscar el proyecto por su ID
+            Proyecto proyecto = session.get(Proyecto.class, idProject);
+            return proyecto != null; // Devuelve true si el proyecto existe
+        } finally {
+            session.close(); // Cerrar la sesión
+        }
+    }
+
+    @Override
     public void addTaskToProject(Tarea tarea, int idProject) {
-        // Obtener una sesión de Hibernate
+        // Verificar si el proyecto existe antes de continuar
+        if (!projectExists(idProject)) {
+            throw new IllegalArgumentException("El proyecto con el id " + idProject + " no existe.");
+        }
+
+        // Si el proyecto existe, continuar con la creación de la tarea
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -40,12 +57,10 @@ public class TareasDAOImpl implements TareasDAO {
             Proyecto proyecto = session.get(Proyecto.class, idProject);
             if (proyecto != null) {
                 tarea.setIdProyecto(proyecto); // Asignar el proyecto a la tarea
-                session.save(tarea); // Guardar la tarea en la base de datos
+                session.persist(tarea); // Guardar la tarea en la base de datos
                 transaction.commit(); // Confirmar los cambios en la base de datos
-            } else {
-                // Si el proyecto no existe, lanzar una excepción
-                throw new IllegalArgumentException("El proyecto con el id " + idProject + " no existe.");
             }
+
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback(); // Revertir los cambios en caso de error
